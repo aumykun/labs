@@ -10,14 +10,20 @@ public class Bluck {
         curtask.addJarFile("DFS.jar");
         Node n = fromFile(curtask.findFile("input"));
 
+
+
         AMInfo info = new AMInfo(curtask, null);
         point p = info.createPoint();
         channel c = p.createChannel();
+        long timerStart = System.currentTimeMillis();
         p.execute("DFS");
         c.write(n);
 
+        long timeEnd = System.currentTimeMillis();
         System.out.println("Waiting for result...");
         System.out.println("Result: " + c.readLong());
+        System.out.println("Time spent:" + (timeEnd - timerStart) + ".");
+
         curtask.end();
     }
 
